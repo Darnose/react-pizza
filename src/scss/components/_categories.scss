@@ -1,9 +1,8 @@
-@import '../variables.scss';
+@import '../variables';
 
 .categories {
   ul {
     display: flex;
-
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;
