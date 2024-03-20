@@ -8,20 +8,21 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 const Home = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [categoryId, setCategoryId] = useState(0);
 
   useEffect(() => {
-    fetch('https://65f55849f54db27bc022f046.mockapi.io/items')
+    fetch(`https://65f55849f54db27bc022f046.mockapi.io/items?category=${categoryId}`)
       .then((res) => res.json())
       .then((arr) => {
         setData(arr);
         setIsLoading(false);
       });
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories />
+        <Categories categoryId={categoryId} setCategoryId={setCategoryId} />
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
