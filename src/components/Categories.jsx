@@ -1,6 +1,4 @@
-const Categories = ({ categoryId, setCategoryId }) => {
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
+const Categories = ({ categoryId, setCategoryId, categories }) => {
   return (
     <div className="categories">
       <ul>

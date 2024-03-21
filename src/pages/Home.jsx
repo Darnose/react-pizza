@@ -9,23 +9,37 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
+  const [sortType, setSortType] = useState({
+    name: 'популярности(по возростанию)',
+    sortBy: 'rating',
+    order: 'asc',
+  });
+
+  const categories = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
   useEffect(() => {
-    fetch(`https://65f55849f54db27bc022f046.mockapi.io/items?category=${categoryId}`)
+    setIsLoading(true);
+
+    const category = categoryId > 0 ? `category=${categoryId}&` : '';
+    const sort = sortType.sortBy;
+
+    fetch(
+      `https://65f55849f54db27bc022f046.mockapi.io/items?${category}&sortBy=${sort}&order=${sortType.order}`,
+    )
       .then((res) => res.json())
       .then((arr) => {
         setData(arr);
         setIsLoading(false);
       });
-  }, [categoryId]);
+  }, [categoryId, sortType]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories categoryId={categoryId} setCategoryId={setCategoryId} />
-        <Sort />
+        <Categories categoryId={categoryId} setCategoryId={setCategoryId} categories={categories} />
+        <Sort sortType={sortType} setSortType={setSortType} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">{categories[categoryId]} пиццы</h2>
       <div className="content__items">
         {isLoading
           ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
