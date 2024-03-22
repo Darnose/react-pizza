@@ -5,12 +5,12 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
   const [sortType, setSortType] = useState({
-    name: 'популярности(по возростанию)',
+    name: 'популярности(по возрастанию)',
     sortBy: 'rating',
     order: 'asc',
   });
@@ -24,14 +24,14 @@ const Home = () => {
     const sort = sortType.sortBy;
 
     fetch(
-      `https://65f55849f54db27bc022f046.mockapi.io/items?${category}&sortBy=${sort}&order=${sortType.order}`,
+      `https://65f55849f54db27bc022f046.mockapi.io/items?${category}&sortBy=${sort}&order=${sortType.order}&search=${searchValue}`,
     )
       .then((res) => res.json())
       .then((arr) => {
         setData(arr);
         setIsLoading(false);
       });
-  }, [categoryId, sortType]);
+  }, [categoryId, sortType, searchValue]);
 
   return (
     <div className="container">

@@ -4,7 +4,7 @@ const Sort = ({ sortType, setSortType }) => {
   const [popup, setPopup] = useState(false);
 
   const list = [
-    { name: 'популярности(по возростанию)', sortBy: 'rating', order: 'asc' },
+    { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
     { name: 'популярности(по убыванию)', sortBy: 'rating', order: 'desc' },
     { name: 'цене(от дешевых)', sortBy: 'price', order: 'asc' },
     { name: 'цене(от дорогих)', sortBy: 'price', order: 'desc' },
