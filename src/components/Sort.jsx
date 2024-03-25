@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Sort = ({ sortType, setSortType }) => {
+import { setSortType } from '../redux/slices/filterSlice';
+
+const list = [
+  { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
+  { name: 'популярности(по убыванию)', sortBy: 'rating', order: 'desc' },
+  { name: 'цене(от дешевых)', sortBy: 'price', order: 'asc' },
+  { name: 'цене(от дорогих)', sortBy: 'price', order: 'desc' },
+  { name: 'алфавиту(А - Я)', sortBy: 'title', order: 'asc' },
+  { name: 'алфавиту(Я - А)', sortBy: 'title', order: 'desc' },
+];
+
+const Sort = () => {
+  const dispatch = useDispatch();
+  const sortType = useSelector((state) => state.filterSlice.sortType);
+
   const [popup, setPopup] = useState(false);
 
-  const list = [
-    { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
-    { name: 'популярности(по убыванию)', sortBy: 'rating', order: 'desc' },
-    { name: 'цене(от дешевых)', sortBy: 'price', order: 'asc' },
-    { name: 'цене(от дорогих)', sortBy: 'price', order: 'desc' },
-    { name: 'алфавиту(А - Я)', sortBy: 'title', order: 'asc' },
-    { name: 'алфавиту(Я - А)', sortBy: 'title', order: 'desc' },
-  ];
-
   const handlePopup = (obj) => {
-    setSortType(obj);
+    dispatch(setSortType(obj));
     setPopup(false);
   };
 
