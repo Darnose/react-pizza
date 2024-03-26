@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCategoryId } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
@@ -10,18 +11,21 @@ import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 
 const Home = () => {
-  const categories = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+  const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
   const dispatch = useDispatch();
-  const { categoryId, sortType } = useSelector((state) => state.filterSlice);
+  const { categoryId, sortType, currentPage } = useSelector((state) => state.filterSlice);
 
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const { searchValue } = useContext(SearchContext);
 
   const onChangeCategory = (index) => {
     dispatch(setCategoryId(index));
+  };
+
+  const onChangePage = (index) => {
+    dispatch(setCurrentPage(index));
   };
 
   useEffect(() => {
@@ -29,12 +33,12 @@ const Home = () => {
 
     const category = categoryId > 0 ? `category=${categoryId}&` : '';
 
-    fetch(
-      `https://65f55849f54db27bc022f046.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortType.sortBy}&order=${sortType.order}&search=${searchValue}`,
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        setData(arr);
+    axios
+      .get(
+        `https://65f55849f54db27bc022f046.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortType.sortBy}&order=${sortType.order}&search=${searchValue}`,
+      )
+      .then((res) => {
+        setData(res.data);
         setIsLoading(false);
       });
   }, [categoryId, sortType, searchValue, currentPage]);
@@ -55,7 +59,7 @@ const Home = () => {
           ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
           : data.map((data) => <PizzaBlock key={data.id} {...data} />)}
       </div>
-      <Pagination setCurrentPage={setCurrentPage} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
