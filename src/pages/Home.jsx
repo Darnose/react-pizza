@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
@@ -14,6 +16,7 @@ const Home = () => {
   const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { categoryId, sortType, currentPage } = useSelector((state) => state.filterSlice);
 
   const [data, setData] = useState([]);
@@ -41,6 +44,17 @@ const Home = () => {
         setData(res.data);
         setIsLoading(false);
       });
+  }, [categoryId, sortType, searchValue, currentPage]);
+
+  useEffect(() => {
+    const QueryString = qs.stringify({
+      sortBy: sortType.sortBy,
+      categoryId,
+      currentPage,
+      order: sortType.order,
+    });
+
+    navigate(`?${QueryString}`);
   }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
