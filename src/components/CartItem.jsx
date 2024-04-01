@@ -1,6 +1,29 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
 const CartItem = ({ id, title, price, type, size, imageUrl, count }) => {
+  const dispatch = useDispatch();
+
+  const onClickPlus = () => {
+    dispatch(
+      addItem({
+        id,
+      }),
+    );
+  };
+
+  const onClickMinus = () => {
+    dispatch(minusItem(id));
+  };
+
+  const onClickRemove = () => {
+    if (window.confirm('Ты действительно хочешь удалить товар?')) {
+      dispatch(removeItem(id));
+    }
+  };
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
@@ -11,7 +34,10 @@ const CartItem = ({ id, title, price, type, size, imageUrl, count }) => {
         <p>{`${type}, 26 cm.`}</p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <button
+          disabled={count === 1}
+          onClick={onClickMinus}
+          className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
             height="10"
@@ -27,9 +53,11 @@ const CartItem = ({ id, title, price, type, size, imageUrl, count }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <button
+          onClick={onClickPlus}
+          className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
             height="10"
@@ -45,13 +73,13 @@ const CartItem = ({ id, title, price, type, size, imageUrl, count }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{price} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <button onClick={onClickRemove} className="button button--outline button--circle">
           <svg
             width="10"
             height="10"
@@ -67,7 +95,7 @@ const CartItem = ({ id, title, price, type, size, imageUrl, count }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );
