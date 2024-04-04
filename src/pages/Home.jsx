@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import qs from 'qs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,6 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
-import { SearchContext } from '../App';
 import { sortList } from '../components/Sort';
 import { fetchPizzas } from '../redux/slices/pizzaSlice';
 
@@ -21,9 +20,10 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const { categoryId, sortType, currentPage } = useSelector((state) => state.filterSlice);
+  const { categoryId, sortType, currentPage, searchValue } = useSelector(
+    (state) => state.filterSlice,
+  );
   const { data, status } = useSelector((state) => state.pizzaSlice);
-  const { searchValue } = useContext(SearchContext);
 
   const onChangeCategory = (index) => {
     dispatch(setCategoryId(index));
@@ -90,7 +90,7 @@ const Home = () => {
       {status === 'error' ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
-          <p>К сожалению, не удалось получить питсы. Попробуйте повторить попытку позже.</p>
+          <p>К сожалению, не удалось получить пиццы. Попробуйте повторить попытку позже.</p>
         </div>
       ) : (
         <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
