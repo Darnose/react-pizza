@@ -10,11 +10,10 @@ import {
   setFilters,
 } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
-import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
-import { sortList } from '../components/Sort';
+import Sort, { sortList } from '../components/Sort';
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlice';
 
 const Home = () => {
