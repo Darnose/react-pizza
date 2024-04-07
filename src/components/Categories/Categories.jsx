@@ -1,12 +1,14 @@
+import styles from './sass/Categories.module.scss';
+
 const Categories = ({ categoryId, onChangeCategory, categories }) => {
   return (
-    <div className="categories">
+    <div className={styles.categories}>
       <ul>
         {categories.map((value, index) => (
           <li
             key={index}
             onClick={() => onChangeCategory(index)}
-            className={categoryId === index ? 'active' : ''}>
+            className={categoryId === index ? styles.active : ''}>
             {value}
           </li>
         ))}

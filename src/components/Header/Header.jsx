@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import PizzaLogo from '../assets/img/pizza-logo.svg';
-import Search from './Search';
-import { selectCart } from '../redux/slices/cartSlice';
+import PizzaLogo from '../../assets/img/pizza-logo.svg';
+import styles from './sass/Header.module.scss';
+import Search from '../Search/Search';
+import { selectCart } from '../../redux/slices/cartSlice';
 
 function Header() {
   const { totalPrice, items } = useSelector(selectCart);
@@ -11,10 +12,10 @@ function Header() {
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <div className="header">
-      <div className="container">
+    <div className={styles.header}>
+      <div className={styles.container}>
         <Link to="/">
-          <div className="header__logo">
+          <div className={styles.header__logo}>
             <img width="38" src={PizzaLogo} alt="Pizza logo" />
             <div>
               <h1>React Pizza</h1>
@@ -23,7 +24,7 @@ function Header() {
           </div>
         </Link>
         <Search />
-        <div className="header__cart">
+        <div className={styles.header__cart}>
           <Link to="/cart" className="button button--cart">
             <span>{`${totalPrice} ₽`}</span>
             <div className="button__delimiter"></div>

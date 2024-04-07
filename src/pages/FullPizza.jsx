@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import Skeleton from '../components/PizzaBlock/Skeleton';
+import styles from '../components/PizzaBlock/sass/PizzaBlock.module.scss';
 
 const FullPizza = () => {
   const [pizza, setPizza] = useState({});
@@ -32,12 +33,12 @@ const FullPizza = () => {
       {loading ? (
         <Skeleton />
       ) : (
-        <div className="pizza-block-wrapper">
-          <div className="pizza-block">
-            <img className="pizza-block__image" src={pizza.imageUrl} alt="Pizza" />
-            <h2 className="pizza-block__title">{pizza.title}</h2>
-            <h4 className="pizza-block__price"> Цена: {pizza.price} ₽</h4>
-            <h4 className="pizza-block__description">Состав: {pizza.description}.</h4>
+        <div className={styles.pizza_block_wrapper}>
+          <div className={styles.pizza_block}>
+            <img className={styles.pizza_block__image} src={pizza.imageUrl} alt="Pizza" />
+            <h2 className={styles.pizza_block__title}>{pizza.title}</h2>
+            <h4 className={styles.pizza_block__price}> Цена: {pizza.price} ₽</h4>
+            <h4 className={styles.pizza_block__description}>Состав: {pizza.description}.</h4>
             <Link to="/">
               <button className="button button--outline button--add">
                 <span>Назад</span>

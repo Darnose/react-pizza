@@ -1,7 +1,6 @@
 @import './variables';
 @import './libs/normalize';
-
-@import './components/all';
+@import './components/button';
 
 body {
   background-color: $background;
@@ -152,7 +151,6 @@ body {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    @include noselect();
 
     span {
       display: inline-block;
@@ -368,7 +366,7 @@ body {
       color: #777777;
     }
 
-    icon {
+    .icon {
       position: relative;
       top: 2px;
     }

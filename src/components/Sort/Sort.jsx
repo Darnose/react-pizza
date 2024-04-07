@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectSort, setSortType } from '../redux/slices/filterSlice';
+import { selectSort, setSortType } from '../../redux/slices/filterSlice';
+import styles from './sass/Sort.module.scss';
 
 export const sortList = [
   { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
@@ -36,8 +37,8 @@ const Sort = () => {
   }, []);
 
   return (
-    <div ref={sortRef} className="sort">
-      <div className="sort__label">
+    <div ref={sortRef} className={styles.sort}>
+      <div className={styles.sort__label}>
         <svg
           width="10"
           height="6"
@@ -53,13 +54,13 @@ const Sort = () => {
         <span onClick={() => setPopup(!popup)}>{sortType.name}</span>
       </div>
       {popup && (
-        <div className="sort__popup">
+        <div className={styles.sort__popup}>
           <ul>
             {sortList.map((obj, index) => (
               <li
                 key={index}
                 onClick={() => handlePopup(obj)}
-                className={sortType.name === obj.name ? 'active' : ''}>
+                className={sortType.name === obj.name ? styles.active : ''}>
                 {obj.name}
               </li>
             ))}

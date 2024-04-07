@@ -1,4 +1,4 @@
-@import '../variables';
+@import '../../../styles/variables';
 
 .header {
   border-bottom: 1px solid $gray-line;
@@ -8,6 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: $container-width;
+    margin: 0 auto;
 
     @media (max-width: 645px) {
       flex-direction: column;

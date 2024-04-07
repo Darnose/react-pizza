@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
+import styles from './sass/PizzaBlock.module.scss';
 
 function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   const dispatch = useDispatch();
@@ -26,19 +27,19 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   };
 
   return (
-    <div className="pizza-block-wrapper">
-      <div className="pizza-block">
+    <div className={styles.pizza_block_wrapper}>
+      <div className={styles.pizza_block}>
         <Link to={`/pizza/${id}`}>
-          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+          <img className={styles.pizza_block__image} src={imageUrl} alt="Pizza" />
         </Link>
-        <h4 className="pizza-block__title">{title}</h4>
-        <div className="pizza-block__selector">
+        <h4 className={styles.pizza_block__title}>{title}</h4>
+        <div className={styles.pizza_block__selector}>
           <ul>
             {types.map((typeId) => (
               <li
                 key={typeId}
                 onClick={() => setActiveType(typeId)}
-                className={activeType === typeId ? 'active' : ''}>
+                className={activeType === typeId ? styles.active : ''}>
                 {typeNames[typeId]}
               </li>
             ))}
@@ -48,14 +49,14 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
               <li
                 key={index}
                 onClick={() => setActiveSize(index)}
-                className={activeSize === index ? 'active' : ''}>
+                className={activeSize === index ? styles.active : ''}>
                 {size} см.
               </li>
             ))}
           </ul>
         </div>
-        <div className="pizza-block__bottom">
-          <div className="pizza-block__price">от {price} ₽</div>
+        <div className={styles.pizza_block__bottom}>
+          <div className={styles.pizza_block__price}>от {price} ₽</div>
           <button onClick={pushItems} className="button button--outline button--add">
             <svg
               width="12"

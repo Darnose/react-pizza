@@ -1,10 +1,11 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
+import styles from './sass/PizzaBlock.module.scss';
 
 const Skeleton = () => (
-  <div className="pizza-block-wrapper">
+  <div className={styles.pizza_block_wrapper}>
     <ContentLoader
-      className="pizza-block"
+      className={styles.pizza_block}
       speed={2}
       width={280}
       height={470}
@@ -15,7 +16,7 @@ const Skeleton = () => (
       <rect x="0" y="270" rx="10" ry="10" width="280" height="23" />
       <rect x="0" y="312" rx="10" ry="10" width="280" height="88" />
       <rect x="0" y="430" rx="10" ry="10" width="95" height="30" />
-      <rect x="130" y="421" rx="24" ry="24" width="152" height="45" />
+      <rect x="150" y="421" rx="24" ry="24" width="130" height="45" />
     </ContentLoader>
   </div>
 );

@@ -7,7 +7,7 @@ import Cart from './pages/Cart';
 import FullPizza from './pages/FullPizza';
 import Layout from './layout/Layout';
 
-import './scss/app.scss';
+import './styles/app.scss';
 
 function App() {
   return (

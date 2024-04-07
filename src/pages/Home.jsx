@@ -9,11 +9,11 @@ import {
   setCurrentPage,
   setFilters,
 } from '../redux/slices/filterSlice';
-import Categories from '../components/Categories';
-import PizzaBlock from '../components/PizzaBlock';
+import Categories from '../components/Categories/Categories';
+import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination';
-import Sort, { sortList } from '../components/Sort';
+import Pagination from '../components/Pagination/Pagination';
+import Sort, { sortList } from '../components/Sort/Sort';
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlice';
 
 const Home = () => {
