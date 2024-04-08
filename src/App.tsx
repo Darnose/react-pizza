@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
+import Home from './pages/Home.tsx';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
-import FullPizza from './pages/FullPizza';
+import FullPizza from './pages/FullPizza.tsx';
 import Layout from './layout/Layout';
 
 import './styles/app.scss';

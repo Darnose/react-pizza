@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import Skeleton from '../components/PizzaBlock/Skeleton';
+import Skeleton from '../components/PizzaBlock/Skeleton.tsx';
 import styles from '../components/PizzaBlock/sass/PizzaBlock.module.scss';
+import IPizza from '../components/PizzaBlock/interface/IPizza';
 
-const FullPizza = () => {
-  const [pizza, setPizza] = useState({});
+const FullPizza: React.FC = () => {
+  const [pizza, setPizza] = useState({} as IPizza);
   const [loading, setLoading] = useState(true);
 
   const { pizzaId } = useParams();

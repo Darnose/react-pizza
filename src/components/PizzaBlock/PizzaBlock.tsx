@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
+import IPizza from './interface/IPizza';
 import styles from './sass/PizzaBlock.module.scss';
 
-function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
+function PizzaBlock({ id, title, price, imageUrl, sizes, types }: IPizza) {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
