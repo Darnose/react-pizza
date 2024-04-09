@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectSort, setSortType } from '../../redux/slices/filterSlice';
 import styles from './sass/Sort.module.scss';
+import ISort from './interface/ISort';
 
-export const sortList = [
+export const sortList: ISort[] = [
   { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
   { name: 'популярности(по убыванию)', sortBy: 'rating', order: 'desc' },
   { name: 'цене(от дешевых)', sortBy: 'price', order: 'asc' },
@@ -16,11 +17,11 @@ export const sortList = [
 const Sort = () => {
   const dispatch = useDispatch();
   const sortType = useSelector(selectSort);
-  const sortRef = useRef();
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const [popup, setPopup] = useState(false);
 
-  const handlePopup = (obj) => {
+  const handlePopup = (obj: ISort) => {
     dispatch(setSortType(obj));
     setPopup(false);
   };

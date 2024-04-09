@@ -1,6 +1,9 @@
-import styles from './sass/Categories.module.scss';
+import React from 'react';
 
-const Categories = ({ categoryId, onChangeCategory, categories }) => {
+import styles from './sass/Categories.module.scss';
+import ICategory from './interface/ICategory';
+
+const Categories: React.FC<ICategory> = ({ categoryId, onChangeCategory, categories }) => {
   return (
     <div className={styles.categories}>
       <ul>

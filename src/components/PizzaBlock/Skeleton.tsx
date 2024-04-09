@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './sass/PizzaBlock.module.scss';
 
