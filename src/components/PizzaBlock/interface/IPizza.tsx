@@ -3,7 +3,7 @@ export default interface IPizza {
   title: string;
   price: number;
   imageUrl: string;
-  sizes: [size: number];
-  types: [type: number];
+  sizes: number[];
+  types: number[];
   description?: string;
 }

@@ -16,7 +16,7 @@ import Pagination from '../components/Pagination/Pagination';
 import Sort, { sortList } from '../components/Sort/Sort';
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlice';
 
-const Home = () => {
+const Home: React.FC = () => {
   const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
   const dispatch = useDispatch();
@@ -27,11 +27,11 @@ const Home = () => {
   const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilter);
   const { data, status } = useSelector(selectPizzas);
 
-  const onChangeCategory = (index) => {
+  const onChangeCategory = (index: number) => {
     dispatch(setCategoryId(index));
   };
 
-  const onChangePage = (index) => {
+  const onChangePage = (index: number) => {
     dispatch(setCurrentPage(index));
   };
 

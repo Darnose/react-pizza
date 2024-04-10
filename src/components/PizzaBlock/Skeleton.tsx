@@ -1,7 +1,8 @@
+import React from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './sass/PizzaBlock.module.scss';
 
-const Skeleton = () => (
+const Skeleton: React.FC = () => (
   <div className={styles.pizza_block_wrapper}>
     <ContentLoader
       className={styles.pizza_block}
