@@ -27,8 +27,8 @@ const Sort = () => {
   };
 
   useEffect(() => {
-    const handleClickOut = (e) => {
-      if (!e.composedPath().includes(sortRef.current)) {
+    const handleClickOut = (e: MouseEvent) => {
+      if (!e.composedPath().includes(sortRef.current!)) {
         setPopup(false);
       }
     };

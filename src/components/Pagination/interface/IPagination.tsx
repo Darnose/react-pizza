@@ -1,4 +1,4 @@
 export default interface IPagination {
   currentPage: number;
-  onChangePage: any;
+  onChangePage: (page: number) => void;
 }
