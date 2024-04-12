@@ -1,4 +1,4 @@
-export default interface ICart {
+export interface ICart {
   id: string;
   title: string;
   price: number;
@@ -6,4 +6,9 @@ export default interface ICart {
   size: number;
   imageUrl: string;
   count: number;
+}
+
+export interface ICartSlice {
+  totalPrice: number;
+  items: ICart[];
 }

@@ -36,9 +36,7 @@ const Home: React.FC = () => {
   };
 
   const getPizzas = () => {
-    const category = categoryId > 0 ? `category=${categoryId}&` : '';
-
-    dispatch(fetchPizzas({ category, currentPage, sortType, searchValue }));
+    dispatch(fetchPizzas({ categoryId, currentPage, sortType, searchValue }));
   };
 
   useEffect(() => {

@@ -1,5 +1,12 @@
 export default interface ISort {
   name: string;
-  sortBy: string;
-  order: string;
+  sortBy: 'rating' | 'price' | 'title';
+  order: 'asc' | 'desc';
+}
+
+export interface IFilterSlice {
+  searchValue: string;
+  categoryId: number;
+  currentPage: number;
+  sortType: ISort;
 }

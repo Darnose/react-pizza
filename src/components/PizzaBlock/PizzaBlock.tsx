@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
-import IPizza from './interface/IPizza';
+import { IPizza } from './interface/IPizza';
 import styles from './sass/PizzaBlock.module.scss';
+import { ICart } from '../Cart/interface/ICart';
 
 const PizzaBlock: React.FC<IPizza> = ({ id, title, price, imageUrl, sizes, types }) => {
   const dispatch = useDispatch();
@@ -16,13 +17,14 @@ const PizzaBlock: React.FC<IPizza> = ({ id, title, price, imageUrl, sizes, types
   const countPizza = cartItem ? cartItem.count : 0;
 
   const pushItems = () => {
-    const item = {
+    const item: ICart = {
       id,
       title,
       price,
       imageUrl,
       type: typeNames[activeType],
       size: sizes[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };
