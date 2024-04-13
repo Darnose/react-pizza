@@ -10,5 +10,11 @@ export interface IPizza {
 
 export interface IPizzaSlice {
   data: IPizza[];
-  status: 'loading' | 'success' | 'error';
+  status: Status;
+}
+
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }

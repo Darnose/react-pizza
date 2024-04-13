@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import ISort, { IFilterSlice } from '../../components/Sort/interface/ISort';
+import { ISort, IFilterSlice, SortByEnum } from '../../components/Sort/interface/ISort';
 import { RootState } from '../store';
 
 const initialState: IFilterSlice = {
@@ -9,7 +9,7 @@ const initialState: IFilterSlice = {
   currentPage: 1,
   sortType: {
     name: 'популярности(по возрастанию)',
-    sortBy: 'rating',
+    sortBy: SortByEnum.RATING,
     order: 'asc',
   },
 };
@@ -30,10 +30,8 @@ const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
-    setFilters(state, action) {
-      state.sortType.sortBy = action.payload.sortBy;
-      state.sortType.order = action.payload.order;
-      state.sortType.name = action.payload.name;
+    setFilters(state, action: PayloadAction<IFilterSlice>) {
+      state.sortType = action.payload.sortType;
       state.currentPage = action.payload.currentPage;
       state.categoryId = action.payload.categoryId;
     },

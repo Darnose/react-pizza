@@ -1,7 +1,13 @@
-export default interface ISort {
+export interface ISort {
   name: string;
-  sortBy: 'rating' | 'price' | 'title';
+  sortBy: SortByEnum;
   order: 'asc' | 'desc';
+}
+
+export enum SortByEnum {
+  RATING = 'rating',
+  PRICE = 'price',
+  TITLE = 'title',
 }
 
 export interface IFilterSlice {

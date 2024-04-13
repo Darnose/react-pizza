@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import qs from 'qs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -15,11 +15,12 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import Sort, { sortList } from '../components/Sort/Sort';
 import { fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlice';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
@@ -39,31 +40,31 @@ const Home: React.FC = () => {
     dispatch(fetchPizzas({ categoryId, currentPage, sortType, searchValue }));
   };
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const QueryString = qs.stringify({
-        sortBy: sortType.sortBy,
-        categoryId,
-        currentPage,
-        order: sortType.order,
-        name: sortType.name,
-      });
-      navigate(`?${QueryString}`);
-    }
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     const QueryString = qs.stringify({
+  //       sortBy: sortType.sortBy,
+  //       categoryId,
+  //       currentPage,
+  //       order: sortType.order,
+  //       name: sortType.name,
+  //     });
+  //     navigate(`?${QueryString}`);
+  //   }
 
-    isMounted.current = true;
-  }, [categoryId, sortType, searchValue, currentPage, navigate]);
+  //   isMounted.current = true;
+  // }, [categoryId, sortType, searchValue, currentPage, navigate]);
 
-  useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-      const sort = sortList.find((obj) => obj.name === params.name);
+  // useEffect(() => {
+  //   if (window.location.search) {
+  //     const params = qs.parse(window.location.search.substring(1));
+  //     const sort = sortList.find((obj) => obj.name === params.name);
 
-      dispatch(setFilters({ ...params, sort }));
+  //     dispatch(setFilters({ ...params, sort }));
 
-      isSearch.current = true;
-    }
-  }, []);
+  //     isSearch.current = true;
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!isSearch.current) {
@@ -86,7 +87,7 @@ const Home: React.FC = () => {
         />
         <Sort />
       </div>
-      <h2 className="content__title">{categories[categoryId]} пиццы</h2>
+      <h2 className="content__title">{categories[Number(categoryId)]} пиццы</h2>
       {status === 'error' ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>

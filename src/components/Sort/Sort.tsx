@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectSort, setSortType } from '../../redux/slices/filterSlice';
 import styles from './sass/Sort.module.scss';
-import ISort from './interface/ISort';
+import { ISort, SortByEnum } from './interface/ISort';
 
 export const sortList: ISort[] = [
-  { name: 'популярности(по возрастанию)', sortBy: 'rating', order: 'asc' },
-  { name: 'популярности(по убыванию)', sortBy: 'rating', order: 'desc' },
-  { name: 'цене(от дешевых)', sortBy: 'price', order: 'asc' },
-  { name: 'цене(от дорогих)', sortBy: 'price', order: 'desc' },
-  { name: 'алфавиту(А - Я)', sortBy: 'title', order: 'asc' },
-  { name: 'алфавиту(Я - А)', sortBy: 'title', order: 'desc' },
+  { name: 'популярности(по возрастанию)', sortBy: SortByEnum.RATING, order: 'asc' },
+  { name: 'популярности(по убыванию)', sortBy: SortByEnum.RATING, order: 'desc' },
+  { name: 'цене(от дешевых)', sortBy: SortByEnum.PRICE, order: 'asc' },
+  { name: 'цене(от дорогих)', sortBy: SortByEnum.PRICE, order: 'desc' },
+  { name: 'алфавиту(А - Я)', sortBy: SortByEnum.TITLE, order: 'asc' },
+  { name: 'алфавиту(Я - А)', sortBy: SortByEnum.TITLE, order: 'desc' },
 ];
 
 const Sort = () => {
