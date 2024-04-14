@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import styles from './sass/Pagination.module.scss';
 import IPagination from './interface/IPagination';
 
-export const Pagination: React.FC<IPagination> = ({ currentPage, onChangePage }) => {
+export const Pagination: React.FC<IPagination> = React.memo(({ currentPage, onChangePage }) => {
   return (
     <ReactPaginate
       className={styles.root}
@@ -17,6 +17,6 @@ export const Pagination: React.FC<IPagination> = ({ currentPage, onChangePage })
       renderOnZeroPageCount={null}
     />
   );
-};
+});
 
 export default Pagination;

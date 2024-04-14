@@ -3,7 +3,9 @@ import React from 'react';
 import styles from './sass/Categories.module.scss';
 import ICategory from './interface/ICategory';
 
-const Categories: React.FC<ICategory> = ({ categoryId, onChangeCategory, categories }) => {
+export const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+
+const Categories: React.FC<ICategory> = React.memo(({ categoryId, onChangeCategory }) => {
   return (
     <div className={styles.categories}>
       <ul>
@@ -18,6 +20,6 @@ const Categories: React.FC<ICategory> = ({ categoryId, onChangeCategory, categor
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;

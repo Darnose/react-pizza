@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import qs from 'qs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import {
   setCurrentPage,
   setFilters,
 } from '../redux/slices/filterSlice';
-import Categories from '../components/Categories/Categories';
+import Categories, { categories } from '../components/Categories/Categories';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
@@ -18,8 +18,6 @@ import { fetchPizzas, selectPizzas } from '../redux/slices/pizzaSlice';
 import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
-  const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = useRef(false);
@@ -28,13 +26,13 @@ const Home: React.FC = () => {
   const { categoryId, sortType, currentPage, searchValue } = useSelector(selectFilter);
   const { data, status } = useSelector(selectPizzas);
 
-  const onChangeCategory = (index: number) => {
+  const onChangeCategory = useCallback((index: number) => {
     dispatch(setCategoryId(index));
-  };
+  }, []);
 
-  const onChangePage = (index: number) => {
+  const onChangePage = useCallback((index: number) => {
     dispatch(setCurrentPage(index));
-  };
+  }, []);
 
   const getPizzas = () => {
     dispatch(fetchPizzas({ categoryId, currentPage, sortType, searchValue }));
@@ -80,14 +78,10 @@ const Home: React.FC = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          categoryId={categoryId}
-          onChangeCategory={onChangeCategory}
-          categories={categories}
-        />
+        <Categories categoryId={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">{categories[Number(categoryId)]} пиццы</h2>
+      <h2 className="content__title">{categories[categoryId]} пиццы</h2>
       {status === 'error' ? (
         <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>
