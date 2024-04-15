@@ -11,7 +11,7 @@ export enum SortByEnum {
 }
 
 export interface IFilterSlice {
-  searchValue: string;
+  searchValue?: string;
   categoryId: number;
   currentPage: number;
   sortType: ISort;

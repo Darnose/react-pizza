@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { ISort, IFilterSlice, SortByEnum } from '../../components/Sort/interface/ISort';
-import { RootState } from '../store';
+import { ISort, IFilterSlice, SortByEnum } from '../../../components/Sort/interface/ISort';
 
 const initialState: IFilterSlice = {
   searchValue: '',
@@ -38,8 +37,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const selectFilter = (state: RootState) => state.filterSlice;
-export const selectSort = (state: RootState) => state.filterSlice.sortType;
 export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue } =
   filterSlice.actions;
 

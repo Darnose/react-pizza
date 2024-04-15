@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectSort, setSortType } from '../../redux/slices/filterSlice';
+import { setSortType } from '../../redux/slices/filter/slice';
+import { selectSort } from '../../redux/slices/filter/selectors';
 import styles from './sass/Sort.module.scss';
 import { ISort, SortByEnum } from './interface/ISort';
 

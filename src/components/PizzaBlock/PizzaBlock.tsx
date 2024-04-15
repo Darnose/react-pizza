@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
+import { addItem } from '../../redux/slices/cart/slice';
+import { selectCartItem } from '../../redux/slices/cart/selectors';
 import { Link } from 'react-router-dom';
 import { IPizza } from './interface/IPizza';
 import styles from './sass/PizzaBlock.module.scss';
