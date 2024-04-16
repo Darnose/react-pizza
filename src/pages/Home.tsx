@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom';
 
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/slice';
 import { selectFilter } from '../redux/slices/filter/selectors';
-import Categories, { categories } from '../components/Categories/Categories';
-import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination/Pagination';
-import Sort, { sortList } from '../components/Sort/Sort';
-import { fetchPizzas } from '../redux/slices/pizza/slice';
+import {
+  PizzaBlock,
+  Skeleton,
+  Pagination,
+  Categories,
+  categories,
+  Sort,
+  sortList,
+} from '../components/index';
+import { fetchPizzas } from '../redux/slices/pizza/asyncActions';
 import { selectPizzas } from '../redux/slices/pizza/selectors';
 import { useAppDispatch } from '../redux/store';
 

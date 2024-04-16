@@ -18,5 +18,3 @@ export const Pagination: React.FC<IPagination> = React.memo(({ currentPage, onCh
     />
   );
 });
-
-export default Pagination;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import Skeleton from '../components/PizzaBlock/Skeleton';
+
+import { Skeleton } from '../components/index';
 import styles from '../components/PizzaBlock/sass/PizzaBlock.module.scss';
 import { IPizza } from '../components/PizzaBlock/interface/IPizza';
 

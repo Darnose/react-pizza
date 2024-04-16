@@ -2,7 +2,7 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './sass/PizzaBlock.module.scss';
 
-const Skeleton: React.FC = () => (
+export const Skeleton: React.FC = () => (
   <div className={styles.pizza_block_wrapper}>
     <ContentLoader
       className={styles.pizza_block}
@@ -20,5 +20,3 @@ const Skeleton: React.FC = () => (
     </ContentLoader>
   </div>
 );
-
-export default Skeleton;

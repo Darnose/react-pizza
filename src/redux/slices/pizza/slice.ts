@@ -1,20 +1,7 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { IPizza, IPizzaSlice, Status } from '../../../components/PizzaBlock/interface/IPizza';
-import { IFilterSlice } from '../../../components/Sort/interface/ISort';
-
-export const fetchPizzas = createAsyncThunk(
-  'pizza/fetchPizzasStatus',
-  async ({ categoryId, currentPage, sortType, searchValue }: IFilterSlice) => {
-    const { data } = await axios.get<IPizza[]>(
-      `https://65f55849f54db27bc022f046.mockapi.io/items?page=${currentPage}&limit=4&${
-        categoryId > 0 ? `category=${categoryId}&` : ''
-      }&sortBy=${sortType.sortBy}&order=${sortType.order}&search=${searchValue}`,
-    );
-    return data;
-  },
-);
+import { fetchPizzas } from './asyncActions';
 
 const initialState: IPizzaSlice = {
   data: [],

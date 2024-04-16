@@ -8,7 +8,7 @@ import { IPizza } from './interface/IPizza';
 import styles from './sass/PizzaBlock.module.scss';
 import { ICart } from '../Cart/interface/ICart';
 
-const PizzaBlock: React.FC<IPizza> = ({ id, title, price, imageUrl, sizes, types }) => {
+export const PizzaBlock: React.FC<IPizza> = ({ id, title, price, imageUrl, sizes, types }) => {
   const dispatch = useDispatch();
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
@@ -81,5 +81,3 @@ const PizzaBlock: React.FC<IPizza> = ({ id, title, price, imageUrl, sizes, types
     </div>
   );
 };
-
-export default PizzaBlock;

@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react';
 
 import PizzaLogo from '../../assets/img/pizza-logo.svg';
 import styles from './sass/Header.module.scss';
-import Search from '../Search/Search';
+import { Search } from '../index';
 import { selectCart } from '../../redux/slices/cart/selectors';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
   const isMounted = useRef(false);
@@ -76,5 +76,3 @@ const Header: React.FC = () => {
     </div>
   );
 };
-
-export default Header;

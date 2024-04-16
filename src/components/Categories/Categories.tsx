@@ -5,7 +5,7 @@ import ICategory from './interface/ICategory';
 
 export const categories = ['Bce', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
-const Categories: React.FC<ICategory> = React.memo(({ categoryId, onChangeCategory }) => {
+export const Categories: React.FC<ICategory> = React.memo(({ categoryId, onChangeCategory }) => {
   return (
     <div className={styles.categories}>
       <ul>
@@ -21,5 +21,3 @@ const Categories: React.FC<ICategory> = React.memo(({ categoryId, onChangeCatego
     </div>
   );
 });
-
-export default Categories;

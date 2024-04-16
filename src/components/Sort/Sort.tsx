@@ -15,7 +15,7 @@ export const sortList: ISort[] = [
   { name: 'алфавиту(Я - А)', sortBy: SortByEnum.TITLE, order: 'desc' },
 ];
 
-const Sort = React.memo(() => {
+export const Sort = React.memo(() => {
   const dispatch = useDispatch();
   const sortType = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -72,5 +72,3 @@ const Sort = React.memo(() => {
     </div>
   );
 });
-
-export default Sort;
